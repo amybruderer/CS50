@@ -24,17 +24,20 @@
 
 int main(int argc, string argv[])
 {
-    // TODO: comment me
+    // Verify the correct number of arguments are given:
+    // At least the program name, the number of pseudorandom numbers to print
+    // and optionally, a seed value
     if (argc != 2 && argc != 3)
     {
         printf("Usage: generate n [s]\n");
         return 1;
     }
 
-    // TODO: comment me
+    // Get the number of pseudorandom numbers to print
     int n = atoi(argv[1]);
 
-    // TODO: comment me
+    // Seed the RNG using user input, if provided
+    // Otherwise, seed with current time
     if (argc == 3)
     {
         srand48((long int) atoi(argv[2]));
@@ -44,7 +47,7 @@ int main(int argc, string argv[])
         srand48((long int) time(NULL));
     }
 
-    // TODO: comment me
+    // Generate and print the requested number of pseudorandom numbers
     for (int i = 0; i < n; i++)
     {
         printf("%i\n", (int) (drand48() * LIMIT));
