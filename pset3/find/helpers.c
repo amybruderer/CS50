@@ -22,29 +22,36 @@ void swap(int* a, int* b)
 }
 
 /**
+ * Performs binary search for value.
  * Returns true if value is in array of n values, else false.
  */
-bool search(int value, int values[], int n)
+bool binarySearch(int value, int values[], int n)
 {
-    // linearly search for value
-    for (int i = 0; i < n; ++i)
+    if (n == 0)
     {
-        if (value == values[i])
+        return false;
+    }
+    else
+    {
+        int middle = n / 2;
+        if (values[middle] < value)
+        {
+            int start = middle + 1;
+            int end = n - start;
+            return binarySearch(value, &values[start], end);
+        }
+        else if (values[middle] > value)
+        {
+            int end = n - (middle + (n % 2));
+            return binarySearch(value, values, end);
+        }
+        else
         {
             return true;
         }
     }
 
     return false;
-}
-
-/**
- * Sorts array of n values.
- */
-void sort(int values[], int n)
-{
-    bubbleSort(values, n);
-    return;
 }
 
 /**
@@ -69,6 +76,23 @@ void bubbleSort(int values [], int n)
             break;
         }
     }
+    return;
+}
+
+/**
+ * Returns true if value is in array of n values, else false.
+ */
+bool search(int value, int values[], int n)
+{
+    return binarySearch(value, values, n);
+}
+
+/**
+ * Sorts array of n values.
+ */
+void sort(int values[], int n)
+{
+    bubbleSort(values, n);
     return;
 }
 
@@ -114,4 +138,21 @@ void insertionSort(int values [], int n)
         }
     }
     return;
+}
+
+/**
+ * Performs linear search for value.
+ * Returns true if value is in array of n values, else false.
+ */
+bool linearSearch(int value, int values[], int n)
+{
+    for (int i = 0; i < n; ++i)
+    {
+        if (value == values[i])
+        {
+            return true;
+        }
+    }
+
+    return false;
 }

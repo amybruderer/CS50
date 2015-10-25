@@ -38,3 +38,15 @@ void selectionSort(int values [], int n);
  * Sorts array of n values using insertion sort.
  */
 void insertionSort(int values [], int n);
+
+/**
+ * Performs linear search for value.
+ * Returns true if value is in array of n values, else false.
+ */
+bool linearSearch(int value, int values[], int n);
+
+/**
+ * Performs binary search for value.
+ * Returns true if value is in array of n values, else false.
+ */
+bool binarySearch(int value, int values[], int n);

@@ -14,7 +14,8 @@
 // prototypes
 void printValues(int values[], int n);
 bool arraysEqual(int values1[], int n1, int values2[], int n2);
-void testSearch();
+void testLinearSearch();
+void testBinarySearch();
 void testSwap();
 void testBubbleSort();
 void testSelectionSort();
@@ -22,7 +23,8 @@ void testInsertionSort();
 
 int main(void)
 {
-    testSearch();
+    testLinearSearch();
+    testBinarySearch();
     testSwap();
     testBubbleSort();
     testSelectionSort();
@@ -71,35 +73,69 @@ bool arraysEqual(int values1[], int n1, int values2[], int n2)
     return true;
 }
 
-void testSearch()
+void testLinearSearch()
 {
     int values[] = { 13, 7, 42, 6, 12 };
     const int ARRAY_SIZE = sizeof(values) / sizeof(values[0]);
 
     // make sure 7 is found
-    if (search(7, values, ARRAY_SIZE))
+    if (linearSearch(7, values, ARRAY_SIZE))
     {
-        printf("testSearch() passed: 7 found in ");
+        printf("testLinearSearch() passed: 7 found in ");
         printValues(values, ARRAY_SIZE);
         printf(".\n");
     }
     else
     {
-        printf("testSearch() failed: 7 not found in ");
+        printf("testLinearSearch() failed: 7 not found in ");
         printValues(values, ARRAY_SIZE);
         printf(".\n");
     }
 
     // make sure 17 is not found
-    if (search(17, values, ARRAY_SIZE))
+    if (linearSearch(17, values, ARRAY_SIZE))
     {
-        printf("testSearch() failed: 17 found in ");
+        printf("testLinearSearch() failed: 17 found in ");
         printValues(values, ARRAY_SIZE);
         printf(".\n");
     }
     else
     {
-        printf("testSearch() passed: 17 not found in ");
+        printf("testLinearSearch() passed: 17 not found in ");
+        printValues(values, ARRAY_SIZE);
+        printf(".\n");
+    }
+}
+
+void testBinarySearch()
+{
+    int values[] = { 13, 7, 42, 6, 12 };
+    const int ARRAY_SIZE = sizeof(values) / sizeof(values[0]);
+
+    // make sure 7 is found
+    if (binarySearch(7, values, ARRAY_SIZE))
+    {
+        printf("testBinarySearch() passed: 7 found in ");
+        printValues(values, ARRAY_SIZE);
+        printf(".\n");
+    }
+    else
+    {
+        printf("testBinarySearch() failed: 7 not found in ");
+        printValues(values, ARRAY_SIZE);
+        printf(".\n");
+    }
+
+    // make sure 17 is not found
+    if (binarySearch(17, values, ARRAY_SIZE))
+    {
+        printf("testBinarySearch() failed: 17 found in ");
+        printValues(values, ARRAY_SIZE);
+        printf(".\n");
+    }
+    else
+    {
+        printf("testBinarySearch() passed: 17 not found in ");
         printValues(values, ARRAY_SIZE);
         printf(".\n");
     }
