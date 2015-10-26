@@ -139,10 +139,15 @@ int main(void)
             velocityY = -velocityY;
         }
 
-        // bounce off bottom edge of window
+        // lose a life and wait for click if ball hits the bottom edge of the window
         else if (getY(ball) + getHeight(ball) >= getHeight(window))
         {
-            velocityY = -velocityY;
+            if (--lives)
+            {
+                waitForClick();
+                removeGWindow(window, ball);
+                ball = initBall(window);
+            }
         }
     }
 
