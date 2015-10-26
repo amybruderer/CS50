@@ -123,6 +123,15 @@ int main(void)
             velocityX = -velocityX;
         }
 
+        // detect collision with paddle and bricks
+        GObject object = detectCollision(window, ball);
+
+        // bounce off paddle
+        if (object == paddle)
+        {
+            velocityY = -velocityY;
+        }
+
         // bounce off top edge of window
         if (getY(ball) <= 0)
         {
