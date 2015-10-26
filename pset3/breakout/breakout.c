@@ -132,9 +132,10 @@ int main(void)
             velocityY = -velocityY;
         }
 
-        // bounce off top edge of window
-        if (getY(ball) <= 0)
+        // bounce off bricks
+        else if (object && (strcmp(getType(object), "GRect") == 0))
         {
+            removeGWindow(window, object);
             velocityY = -velocityY;
         }
 
