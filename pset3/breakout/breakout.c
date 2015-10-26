@@ -119,7 +119,39 @@ int main(void)
  */
 void initBricks(GWindow window)
 {
-    // TODO
+    static const string COLORS[] = {
+        "RED",
+        "ORANGE",
+        "YELLOW",
+        "GREEN",
+        "BLUE",
+    };
+
+    // starting position for first row of bricks
+    static const int START_X = 2;
+    static const int START_Y = 50;
+
+    // spacing between each brick
+    static const int HORIZ_SPACE = 4;
+    static const int VERT_SPACE = 5;
+
+    // height and width for each brick
+    static const int BRICK_HEIGHT = 10;
+    static const int BRICK_WIDTH = (WIDTH - (HORIZ_SPACE * COLS)) / COLS;
+
+    // create bricks
+    for (int row = 0; row < ROWS; ++row)
+    {
+        for (int col = 0; col < COLS; ++col)
+        {
+            int x = START_X + (col * (HORIZ_SPACE + BRICK_WIDTH));
+            int y = START_Y + (row * (VERT_SPACE + BRICK_HEIGHT));
+            GRect brick = newGRect(x, y, BRICK_WIDTH, BRICK_HEIGHT);
+            setFilled(brick, true);
+            setColor(brick, COLORS[row]);
+            add(window, brick);
+        }
+    }
 }
 
 /**
