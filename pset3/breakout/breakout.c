@@ -132,9 +132,11 @@ int main(void)
             velocityY = -velocityY;
         }
 
-        // bounce off bricks
+        // bounce off bricks and update score
         else if (object && (strcmp(getType(object), "GRect") == 0))
         {
+            --bricks;
+            updateScoreboard(window, label, (COLS * ROWS) - bricks);
             removeGWindow(window, object);
             velocityY = -velocityY;
         }
@@ -232,8 +234,16 @@ GRect initPaddle(GWindow window)
  */
 GLabel initScoreboard(GWindow window)
 {
-    // TODO
-    return NULL;
+    GLabel scoreboard = newGLabel("0");
+    setFont(scoreboard, "SansSerif-48");
+    setColor(scoreboard, "Gray");
+
+    // center label in window
+    double x = (getWidth(window) - getWidth(scoreboard)) / 2;
+    double y = (getHeight(window) - getHeight(scoreboard)) / 2;
+    setLocation(scoreboard, x, y);
+    add(window, scoreboard);
+    return scoreboard;
 }
 
 /**
