@@ -74,6 +74,10 @@ int main(void)
     // number of points initially
     int points = 0;
 
+    // ball's initial velocity
+    double velocityX = (drand48() / 20.0) + 0.05;
+    double velocityY = 0.1;
+
     // keep playing until game over
     while (lives > 0 && bricks > 0)
     {
@@ -104,6 +108,32 @@ int main(void)
             }
         }
 
+        // move the ball
+        move(ball, velocityX, velocityY);
+
+        // bounce off right edge of window
+        if (getX(ball) + getWidth(ball) >= getWidth(window))
+        {
+            velocityX = -velocityX;
+        }
+
+        // bounce off left edge of window
+        else if (getX(ball) <= 0)
+        {
+            velocityX = -velocityX;
+        }
+
+        // bounce off top edge of window
+        if (getY(ball) <= 0)
+        {
+            velocityY = -velocityY;
+        }
+
+        // bounce off bottom edge of window
+        else if (getY(ball) + getHeight(ball) >= getHeight(window))
+        {
+            velocityY = -velocityY;
+        }
     }
 
     // wait for click before exiting
