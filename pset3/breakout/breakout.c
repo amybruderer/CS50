@@ -159,8 +159,14 @@ void initBricks(GWindow window)
  */
 GOval initBall(GWindow window)
 {
-    // TODO
-    return NULL;
+    int diameter = RADIUS * 2;
+    int x = (WIDTH - diameter) / 2;
+    int y = (HEIGHT - diameter) / 2;
+    GOval ball = newGOval(x, y, diameter, diameter);
+    setFilled(ball, true);
+    setColor(ball, "BLACK");
+    add(window, ball);
+    return ball;
 }
 
 /**
