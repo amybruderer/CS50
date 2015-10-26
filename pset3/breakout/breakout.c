@@ -129,7 +129,11 @@ int main(void)
         // bounce off paddle
         if (object == paddle)
         {
-            velocityY = -velocityY;
+            // only bounce if velocity is positive
+            if (velocityY > 0)
+            {
+                velocityY = -velocityY;
+            }
         }
 
         // bounce off bricks and update score
@@ -138,6 +142,12 @@ int main(void)
             --bricks;
             updateScoreboard(window, label, (COLS * ROWS) - bricks);
             removeGWindow(window, object);
+            velocityY = -velocityY;
+        }
+
+        // bounce off top edge of window
+        else if (getY(ball) <= 0)
+        {
             velocityY = -velocityY;
         }
 
