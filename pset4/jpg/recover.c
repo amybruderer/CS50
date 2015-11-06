@@ -7,7 +7,13 @@
  * Recovers JPEGs from a forensic image.
  */
 
+#include <stdio.h>
+
 int main(int argc, char* argv[])
 {
-    // TODO
+    // open forensic image
+    FILE* file = fopen("card.raw", "r");
+
+    // close forensic image
+    fclose(file);
 }
