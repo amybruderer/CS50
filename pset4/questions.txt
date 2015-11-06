@@ -1,19 +1,23 @@
-0.  TODO
-1.  TODO
-2.  TODO
-3.  TODO
-4.  TODO
-5.  TODO
-6.  TODO
-7.  TODO
-8.  TODO
-9.  TODO
-10. TODO
-11. TODO
-12. TODO
-13. TODO
-14. TODO
-15. TODO
-16. TODO
-17. TODO
-18. TODO
+0.  Different colors supported by each format:
+    BMP:    4 billion
+    GIF:    256
+    JPEG:   16.7 million
+    PNG:    16.7 million
+1.  GIF supports animation.
+2.  The difference between lossy and lossless compression is whether or not all the original data can be recovered when uncompressing a compressed file.  Lossless compression completely restores every bit of original data.  Lossy compression allows for some amount of loss, in exchange for reduced file size.
+3.  The JPEG format is lossy-compressed.
+4.  When a file is deleted on a FAT file system, only the metadata that points to the file is changed.  The actual file data remains untouched.
+5.  Physically destroying a disk is a good way to ensure that files you delete cannot be recovered.
+6.  stdint.h is a header file that defines integer types with specific width requirements.
+7.  Using uint8_t, uint32_t, int32_t, and uint16_t in a program provides portability.  These types guarantee a fixed size, regardless of hardware.
+8.  A BYTE is 1 byte, a DWORD is 4 bytes, a LONG is 4 bytes, and a WORD is 2 bytes.
+9.  The first two bytes of any BMP file must be BM.
+10. bfSize is the size, in bytes, of a bitmap file. biSize is the size, in bytes, of the BITMAPINFOHEADER struct.
+11. If biHeight is negative, the bitmap is a top-down DIB with its origin in the upper-left corner.
+12. biBitCount specifies the BMP's color depth.
+13. fopen will return NULL if the output file cannot be created.
+14. The third argument to fread is always 1 because we only want to read one object at a time.
+15. If bi.biWidth is 3, copy.c:70 assigns 3 to padding.
+16. fseek changes the file position indicator by a specified offset.
+17. SEEK_CUR is the current position of the file pointer.
+18. Rob Bowden
