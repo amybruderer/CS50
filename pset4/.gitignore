@@ -1,0 +1,8 @@
+# Ignore all bmp files in pset4
+*.bmp
+
+# Unignore bmp files from pset4 distribution
+!bmp/clue.bmp
+!bmp/large.bmp
+!bmp/small.bmp
+!bmp/smiley.bmp
