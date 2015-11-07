@@ -6,3 +6,6 @@
 !bmp/large.bmp
 !bmp/small.bmp
 !bmp/smiley.bmp
+
+# Ignore all jpg files in pset4
+*.jpg
