@@ -17,6 +17,9 @@ typedef struct node
     // indicates completion of dictionary key
     bool data;
     
+    // max number of children
+    int maxChildren;
+
     // collection of pointers to other nodes
     struct node** children;
 } node;

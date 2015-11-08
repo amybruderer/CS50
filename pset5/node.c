@@ -20,5 +20,6 @@
 void init_node(node* n, int count)
 {
     n->data = false;
+    n->maxChildren = count;
     n->children = calloc(count, sizeof(*n->children));
 }
