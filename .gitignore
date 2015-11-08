@@ -11,3 +11,6 @@
 ### Above combination will ignore all files without extension ###
 
 ### Add additional rules below ###
+
+# Unignore makefiles
+!*Makefile
