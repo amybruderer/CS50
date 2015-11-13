@@ -1,11 +1,11 @@
-0.  TODO
-1.  TODO
-2.  TODO
-3.  TODO
-4.  TODO
-5.  TODO
-6.  TODO
-7.  TODO
-8.  TODO
-9.  TODO
-10. TODO
+0.  According to Wikipedia.org, pneumonoultramicroscopicsilicovolcanoconiosis is the longest word in the English language.  I guess that's why we've used it's length as the maximum word length in dictionary.h.
+1.  According to its man page, getrusage returns resource usage measures for one of the following: the calling process, all children of the calling process, or the calling thread.
+2.  There are 16 members in a variable of type struct rusage.
+3.  We pass before and after by reference to avoid making copies of such large variables when calling calculate.
+4.  In speller.c, main reads words from a file character by character.  Only words containing alphabetical characters and/or apostrophes are considered acceptable.  Any words with numbers are ignored.  As each character is read, if the character is either alphabetical or an apostrophe which is not the first character of the word, and the word isn't longer than the maximum word length, the character is added to the current word being constructed.  If the word is longer than the maximum word length, the remainder of the word is immediately consumed and the word is discarded.  If the character is a number, the remainder of the word is immediately consumed and the current word is discarded.  If the character doesn't satisfy the above conditions, we have finished reading the current word and are ready to spell check it.
+5.  If fscanf had been used instead of fgetc, it is possible that we could have overrun our word array when reading in words longer than the max word length.  Even if we tried to safe guard against this by using a format string like "%45s", we would then accept partial words that we would have otherwise discarded.  Additionally, we would have needed to check each word character by character to discard words with numbers.
+6.  The parameters for check and load are declared as const to indicate that they will not be modified by the function.
+7.  I used a trie data structure to implement my spell-checker.  Each node contains a boolean value to indicate the completion of a word, a number indicating the max number of children, and a collection of pointers to children nodes.
+8.  Compared to the staff's solution, my code takes twice as long to run when using the large dictionary as the dictionary and text.
+9.  I have not made any changes to improve performance, as I feel my code is still quite fast.
+10. The load and unload functions appear to be where the bottlenecks are.  Not sure how to change them to improve performance.
