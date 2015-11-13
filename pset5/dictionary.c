@@ -192,7 +192,7 @@ int get_node_index(char c)
 
     if (isalpha(c))
     {
-        index = c - 'a';
+        index = tolower(c) - 'a';
     }
 
     return index;
