@@ -11,6 +11,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "dictionary.h"
 #include "node.h"
@@ -19,7 +20,7 @@
 #define CHILDREN 27
 
 // prototypes
-void add_word(const char* word);
+bool add_word(const char* word);
 int get_node_index(char c);
 
 // in memory dictionary
@@ -48,7 +49,12 @@ bool load(const char* dictionary)
     }
 
     // initialize dictionary
-    init_node(&tree, CHILDREN);
+    if (!init_node(&tree, CHILDREN))
+    {
+        printf("Could not initialize dictionary.");
+        fclose(file);
+        return false;
+    }
 
     char word[LENGTH+1];
 
@@ -56,8 +62,16 @@ bool load(const char* dictionary)
     while (EOF != fscanf(file, "%s", word))
     {
         // add word to dictionary
-        add_word(word);
+        if (!add_word(word))
+        {
+            printf("Could not add %s to dictionary.", word);
+            fclose(file);
+            return false;
+        }
     }
+
+    // close dictionary file
+    fclose(file);
 
     return true;
 }
@@ -81,14 +95,15 @@ bool unload(void)
 }
 
 /**
- * Adds a word to the dictionary.
+ * Adds a word to the dictionary.  Returns true if successful else false.
  */
-void add_word(const char* word)
+bool add_word(const char* word)
 {
-    // just return if word is NULL
-    if (word == NULL)
+    // just return if word is NULL or empty
+    if ((word == NULL) || (strlen(word) == 0))
     {
-        return;
+        // consider this successful
+        return true;
     }
 
     // start at the beginning of dictionary
@@ -106,10 +121,23 @@ void add_word(const char* word)
         // create node for character if it doesn't exist
         if (charNode == NULL)
         {
-            charNode = malloc(sizeof(tree));
+            charNode = malloc(sizeof(node));
+
+            // out of memory
+            if (charNode == NULL)
+            {
+                printf("Could not allocate memory for character node.");
+                return false;
+            }
 
             // initialize new node
-            init_node(charNode, CHILDREN);
+            bool result = init_node(charNode, CHILDREN);
+
+            if (!result)
+            {
+                printf("Could not initialize character node.");
+                return false;
+            }
 
             // insert node into dictionary
             curNode->children[nodeIndex] = charNode;
@@ -121,6 +149,8 @@ void add_word(const char* word)
 
     // mark node as a word
     curNode->data = true;
+
+    return true;
 }
 
 /**

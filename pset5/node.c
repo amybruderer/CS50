@@ -16,10 +16,20 @@
  * - data set to false
  * - allocate memory for specified number of children node pointers
  * - each child node pointer set to NULL
+ *
+ * Returns true if successful else false.
  */
-void init_node(node* n, int count)
+bool init_node(node* n, int count)
 {
+    // can't initialize NULL pointer
+    if (n == NULL)
+    {
+        return false;
+    }
+
     n->data = false;
     n->maxChildren = count;
     n->children = calloc(count, sizeof(*n->children));
+
+    return (n->children != NULL);
 }
