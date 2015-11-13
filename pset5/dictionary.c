@@ -31,8 +31,32 @@ node tree;
  */
 bool check(const char* word)
 {
-    // TODO
-    return false;
+    // just return if word is NULL or empty
+    if ((word == NULL) || (strlen(word) == 0))
+    {
+        return false;
+    }
+
+    // start at the beginning of dictionary
+    node* curNode = &tree;
+
+    // check each character
+    for (int i = 0; word[i] != '\0'; ++i)
+    {
+        // get character node index
+        int nodeIndex = get_node_index(word[i]);
+
+        // get node for character
+        curNode = curNode->children[nodeIndex];
+
+        // word isn't in dictionary
+        if (curNode == NULL)
+        {
+            return false;
+        }
+    }
+
+    return curNode->data;
 }
 
 /**
