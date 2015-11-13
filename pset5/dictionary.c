@@ -26,6 +26,9 @@ int get_node_index(char c);
 // in memory dictionary
 node tree;
 
+// words in dictionary
+int words = 0;
+
 /**
  * Returns true if word is in dictionary else false.
  */
@@ -80,6 +83,8 @@ bool load(const char* dictionary)
         return false;
     }
 
+    words = 0;
+
     char word[LENGTH+1];
 
     // load each word from dictionary file
@@ -92,6 +97,7 @@ bool load(const char* dictionary)
             fclose(file);
             return false;
         }
+        words++;
     }
 
     // close dictionary file
@@ -105,8 +111,7 @@ bool load(const char* dictionary)
  */
 unsigned int size(void)
 {
-    // TODO
-    return 0;
+    return words;
 }
 
 /**
@@ -114,6 +119,7 @@ unsigned int size(void)
  */
 bool unload(void)
 {
+    words = 0;
     return destroy_node(&tree);
 }
 
