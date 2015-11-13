@@ -33,3 +33,29 @@ bool init_node(node* n, int count)
 
     return (n->children != NULL);
 }
+
+/**
+ * Recursively cleans up memory allocated for this node and all children.
+ * Returns true if successful else false.
+ */
+bool destroy_node(node* n)
+{
+    // no need to destroy NULL pointer
+    if (n == NULL)
+    {
+        return true;
+    }
+
+    // clean up all children
+    for (int i = 0; i < n->maxChildren; ++i)
+    {
+        destroy_node(n->children[i]);
+        free(n->children[i]);
+        n->children[i] = NULL;
+    }
+
+    // clean up pointer to children
+    free(n->children);
+
+    return true;
+}

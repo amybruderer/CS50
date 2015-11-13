@@ -34,4 +34,10 @@ typedef struct node
  */
 bool init_node(node* n, int count);
 
+/**
+ * Recursively cleans up memory allocated for this node and all children.
+ * Returns true if successful else false.
+ */
+bool destroy_node(node* n);
+
 #endif // NODE_H
