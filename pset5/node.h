@@ -16,7 +16,7 @@ typedef struct node
 {
     // indicates completion of dictionary key
     bool data;
-    
+
     // max number of children
     int maxChildren;
 
